@@ -17,21 +17,25 @@ const renderFooter = () =>{
 	footerLi4.className = "footer-list-items";
 
   let footerA = document.createElement('a')
+  footerA.href = "index.html"
   footerA.className = 'footer-links'
   footerA.innerText = 'Home'
   footerLi1.append(footerA)
 
   let footerB = document.createElement("a");
+  footerB.href = "";
   footerB.className = "footer-links";
   footerB.innerText = "Graph";
   footerLi2.append(footerB);
   
   let footerC = document.createElement("a");
+  footerC.href = "";
   footerC.className = "footer-links";
   footerC.innerText = "Contact";
   footerLi3.append(footerC);
 
   let footerD = document.createElement("a");
+  footerD.href = "";
 	footerD.className = "footer-links";
   footerD.innerText = "FQA";
   footerLi4.append(footerD);
