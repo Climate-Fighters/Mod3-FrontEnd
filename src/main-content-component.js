@@ -1,9 +1,171 @@
+// Fetching Country Data
+const fetchData = () => {
+  fetch("http://localhost:3000/countries")
+    .then(res => res.json())
+    .then(data => {
+      data.forEach(countryObj => {
+        if (countryObj.name === "USA") {
+          usaObjData(countryObj);
+        } else if (countryObj.name === "China") {
+          chinaObjData(countryObj);
+        } else if (countryObj.name === "India") {
+          indiaObjData(countryObj);
+        } else if (countryObj.name === "Brazil") {
+          brazilObjData(countryObj);
+        } else {
+          franceObjData(countryObj);
+        }
+      });
+    });
+};
+fetchData();
+
+
+
+
+let usaInfoArr = []
+const usaObjData = usaObj => {
+  let usaName = usaObj.name
+  
+  usaObj.country_resources.forEach(countryRes =>{
+    
+    let usaProduction = countryRes.production
+    let usaResourceName = countryRes.resource.name
+    
+    countryRes.resource.resource_scenarios.forEach(scenario =>{
+
+      let usaScenarioYield = scenario.yield
+      let usaScenarioName =  scenario.scenario.name
+      let usaInfo = Object.assign({}, 
+        {
+          name: usaName,
+          production: usaProduction,
+          resource: usaResourceName,
+          yield: usaScenarioYield,
+          scenario: usaScenarioName,
+        })
+      usaInfoArr.push(usaInfo)
+    })
+  })
+};
+
+let chinaInfoArr = []
+
+const chinaObjData = chinaObj  => {
+  let chinaName = chinaObj.name
+
+  chinaObj.country_resources.forEach(countryRes => {
+
+    let chinaProduction = countryRes.production
+    let chinaResourceName = countryRes.resource.name
+
+    countryRes.resource.resource_scenarios.forEach(scenario => {
+
+      let chinaScenarioYield = scenario.yield
+      let chinaScenarioName = scenario.scenario.name
+      let chinaInfo = Object.assign({},
+        {
+          name: chinaName,
+          production: chinaProduction,
+          resource: chinaResourceName,
+          yield: chinaScenarioYield,
+          scenario: chinaScenarioName,
+        })
+      chinaInfoArr.push(chinaInfo)
+    })
+  })
+};
+
+let indiaInfoArr = []
+const indiaObjData = indiaObj => {
+  let indiaName = indiaObj.name
+
+  indiaObj.country_resources.forEach(countryRes => {
+
+    let indiaProduction = countryRes.production
+    let indiaResourceName = countryRes.resource.name
+
+    countryRes.resource.resource_scenarios.forEach(scenario => {
+
+      let indiaScenarioYield = scenario.yield
+      let indiaScenarioName = scenario.scenario.name
+      let indiaInfo = Object.assign({},
+        {
+          name: indiaName,
+          production: indiaProduction,
+          resource: indiaResourceName,
+          yield: indiaScenarioYield,
+          scenario: indiaScenarioName,
+        })
+      indiaInfoArr.push(indiaInfo)
+    })
+  })
+
+};
+
+let brazilInfoArr = []
+const brazilObjData = brazilObj => {
+  let brazilName = brazilObj.name
+
+  brazilObj.country_resources.forEach(countryRes => {
+
+    let brazilProduction = countryRes.production
+    let brazilResourceName = countryRes.resource.name
+
+    countryRes.resource.resource_scenarios.forEach(scenario => {
+
+      let brazilScenarioYield = scenario.yield
+      let brazilScenarioName = scenario.scenario.name
+      let brazilInfo = Object.assign({},
+        {
+          name:brazilName,
+          production: brazilProduction,
+          resource: brazilResourceName,
+          yield: brazilScenarioYield,
+          scenario: brazilScenarioName,
+        })
+      brazilInfoArr.push(brazilInfo)
+    })
+  })
+  
+};
+
+let franceInfoArr = []
+const franceObjData = franceObj => {
+  let franceName = franceObj.name
+  franceObj.country_resources.forEach(countryRes => {
+
+    let franceProduction = countryRes.production
+    let franceResourceName = countryRes.resource.name
+
+    countryRes.resource.resource_scenarios.forEach(scenario => {
+
+      let franceScenarioYield = scenario.yield
+      let franceScenarioName = scenario.scenario.name
+      let franceInfo = Object.assign({},
+        {
+          name: franceName,
+          production: franceProduction,
+          resource: franceResourceName,
+          yield: franceScenarioYield,
+          scenario: franceScenarioName,
+        })
+      franceInfoArr.push(franceInfo)
+    })
+  })
+  debugger
+};
+
+
+
+
 const mainContent = document.querySelector(".main-content");
 
 
 // documentation for the chart: https://www.chartjs.org/docs/latest/charts/bar.html#stacked-bar-chart
 
 const renderMainContent = () =>{
+
   var ctx = document.getElementById('myChart').getContext('2d');
   
   var stackedBar = new Chart(ctx, {
@@ -48,6 +210,8 @@ const renderMainContent = () =>{
         }
       }
     });
+
+}
 //     type: 'bar',
 //     data: {
 //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -89,6 +253,6 @@ const renderMainContent = () =>{
 //     },
 //   });
 //  console.log('myChart: ', ctx)
-}
+
 
 
